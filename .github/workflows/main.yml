@@ -9,17 +9,6 @@ jobs:
   build:
     runs-on: ubuntu-latest
 
-   name: Build and Test
-
-on:
-  push:
-    branches:
-      - main
-
-jobs:
-  build:
-    runs-on: ubuntu-latest
-
     steps:
       - name: Checkout Repository
         uses: actions/checkout@v2
@@ -29,10 +18,7 @@ jobs:
         with:
           node-version: '14'
 
-      - name: Install Dependencies
-        working-directory: <path/to/your/project>
-        run: npm install
-
-      - name: Run Tests
-        working-directory: <path/to/your/project>
-        run: npm test
+      - name: Install Dependencies and Run Tests
+        run: |
+          npm install
+          npm test
