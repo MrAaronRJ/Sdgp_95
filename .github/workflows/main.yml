@@ -2,35 +2,32 @@ name: Flutter CI
 
 on:
   push:
-    branches:
-      - main
+    branches: [main]
   pull_request:
-    branches:
-      - main
+    branches: [main]
+    
 
 jobs:
   build:
+    name: Build
     runs-on: ubuntu-latest
-
     steps:
-    - name: Set up Node.js 20
-      uses: actions/setup-node@v3
-      with:
-        node-version: '20'
+      - name: Checkout Code
+        uses: actions/checkout@v2
 
-    - name: Checkout code
-      uses: actions/checkout@v2
+      - name: Set up Flutter
+        uses: subosito/flutter-action@v2
+        with:
+          flutter-version: '2.10.0'
 
-    - name: Set up Flutter
-      uses: subosito/flutter-action@v2
-      with:
-        flutter-version: '2.10.0' # Set your desired Flutter version here
+      - name: Change Directory to sdgp_95
+        run: cd sdgp_95
 
-    - name: Get dependencies
-      run: flutter pub get
+      - name: Install dependencies
+        run: flutter pub get
 
-    - name: Analyze code
-      run: flutter analyze
+      - name: Run Tests
+        run: flutter test  # This assumes tests are located within the 'test' folder inside sdgp_95
 
-    - name: Run tests
-      run: flutter test
+      - name: Build App Bundle
+        run: flutter build appbundle --release
