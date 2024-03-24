@@ -1,6 +1,6 @@
 # sdgp_95
 
-A new Flutter project.
+Vehicle Tech Mate
 
 ## Getting Started
 

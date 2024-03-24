@@ -107,8 +107,7 @@ class _ReminderPageState extends State<ReminderPage> {
                 Center(
                   child: ElevatedButton(
                     style: ElevatedButton.styleFrom(
-                      foregroundColor: Colors.white,
-                      backgroundColor:Colors.blue,
+                      foregroundColor: Colors.white, backgroundColor: Colors.blue,
                       elevation: 4,
                       // Button shape
                       shape: RoundedRectangleBorder(

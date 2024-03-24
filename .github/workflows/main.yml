@@ -1,33 +1,23 @@
-name: Flutter CI
+name: Build and Test
 
 on:
   push:
-    branches: [main]
-  pull_request:
-    branches: [main]
-    
+    branches:
+      - main
 
 jobs:
   build:
-    name: Build
     runs-on: ubuntu-latest
+
     steps:
-      - name: Checkout Code
+      - name: Checkout Repository
         uses: actions/checkout@v2
 
-      - name: Set up Flutter
-        uses: subosito/flutter-action@v2
-        with:
-          flutter-version: '2.10.0'
-
-      - name: Change Directory to sdgp_95
-        run: cd sdgp_95
-
-      - name: Install dependencies
-        run: flutter pub get
+      - name: Install Dependencies and Build
+        run: 
+          npm install
+          npm run build
 
       - name: Run Tests
-        run: flutter test  # This assumes tests are located within the 'test' folder inside sdgp_95
-
-      - name: Build App Bundle
-        run: flutter build appbundle --release
+          run: 
+            npm test

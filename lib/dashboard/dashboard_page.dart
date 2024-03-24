@@ -15,7 +15,7 @@ class DashboardPage extends StatefulWidget {
 class _DashboardPageState extends State<DashboardPage> {
   late BluetoothConnection connection;
 
-  double coolantTemperature = 48.5;
+ double coolantTemperature = 48.5;
   double mileageLevel = 58325.2;
   double airflowRate = 5.2;
   double batteryLevel = 89.8;

@@ -359,19 +359,23 @@ class _VehicleUpdateAddPageState extends State<VehicleUpdateAddPage> {
                         'fuelType': selectedFuelType,
                       };
 
-
+                      if (_selectedImage != null) {
+                        String? imageUrl = await _uploadImage(
+                            _selectedImage!);
+                        if (imageUrl != null) {
+                          vehicleInfo['imageUrl'] = imageUrl;
+                        } else {
+                          vehicleInfo['imageUrl'] = '';
+                        }
+                      }
 
                       if (action == 'create') {
-
-
                         if (_selectedImage != null) {
                           String? imageUrl =
                               await _uploadImage(_selectedImage!);
                           if (imageUrl != null) {
                             vehicleInfo['imageUrl'] = imageUrl;
                           }
-                        }else{
-                          vehicleInfo['imageUrl'] = "";
                         }
                         // Persist a new product to Firestore
                         await _vehicles.add(vehicleInfo);
@@ -392,8 +396,6 @@ class _VehicleUpdateAddPageState extends State<VehicleUpdateAddPage> {
                           if (imageUrl != null) {
                             vehicleInfo['imageUrl'] = imageUrl;
                           }
-                        }else{
-                          vehicleInfo['imageUrl'] = "";
                         }
                         await _vehicles
                             .doc(documentSnapshot!.id)
@@ -464,7 +466,7 @@ class _VehicleUpdateAddPageState extends State<VehicleUpdateAddPage> {
                                     as Map<String, dynamic>)),
                       );
                     },
-                    leading:  documentSnapshot['imageUrl'] == '' || documentSnapshot['imageUrl'] == null
+                    leading: documentSnapshot['imageUrl'] == '' || documentSnapshot['imageUrl'] == null
                         ? SizedBox()
                         : Image.network(documentSnapshot['imageUrl']),
                     title: Text(documentSnapshot['model'] ,style:TextStyle(fontWeight: FontWeight.w600) ,),
