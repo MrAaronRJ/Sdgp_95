@@ -30,7 +30,7 @@ jobs:
           # Adjust the commands according to your project's requirements
 
       - name: Run Tests
-        run: |
+          run: |
           # Add commands to run tests or any other validation steps
           # Example commands for Node.js:
           # npm test
